@@ -62,13 +62,19 @@ class MainApp(App):
         self.input_box_sort = TextInput(size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.6, "top": 0.79})
         layout.add_widget(self.input_box_sort)
 
-        self.spinner_input_sort = Spinner(text="Select Input Type", values=("List", "Dict", "Tuple", "String"), background_color=(0.2, 0.6, 0.86, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.06, "top": 0.61})
+        label3 = Label(text="Enter Target Number", pos_hint={"center_x": 0.2, "top": 1.04})
+        layout.add_widget(label3)
+
+        self.input_box_sort = TextInput(size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.66, "top": 0.56})
+        layout.add_widget(self.input_box_sort)
+
+        self.spinner_input_sort = Spinner(text="Select Input Type", values=("List", "Dict", "Tuple", "String"), background_color=(0.2, 0.6, 0.86, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.06, "top": 0.68})
         layout.add_widget(self.spinner_input_sort)
 
-        self.spinner_order_sort = Spinner(text="Select Order", values=("Ascending", "Descending"), background_color=(1.0, 0.5, 0.0, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.4, "top": 0.61})
+        self.spinner_order_sort = Spinner(text="Select Order", values=("Ascending", "Descending"), background_color=(1.0, 0.5, 0.0, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.4, "top": 0.68})
         layout.add_widget(self.spinner_order_sort)
 
-        self.spinner_algo_sort = Spinner(text="Select Algorithm", values=("Bubble", "Insertion", "Selection"), background_color=(0.0, 0.7, 0.3, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.7, "top": 0.61})
+        self.spinner_algo_sort = Spinner(text="Select Algorithm", values=("Bubble", "Insertion", "Selection"), background_color=(0.0, 0.7, 0.3, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.7, "top": 0.68})
         layout.add_widget(self.spinner_algo_sort)
 
         btn_layout = BoxLayout(orientation="horizontal", size_hint=(0.25, None), height=40, pos_hint={"center_x": 0.5, "top": 0.46})
@@ -76,14 +82,14 @@ class MainApp(App):
         btn_layout.add_widget(self.sort_btn)
         layout.add_widget(btn_layout)
 
-        label3 = Label(text="Sorted Output", pos_hint={"center_x": 0.2, "top": 0.78})
-        layout.add_widget(label3)
+        label4 = Label(text="Sorted Output", pos_hint={"center_x": 0.2, "top": 0.78})
+        layout.add_widget(label4)
 
         self.output_box_sort = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.30})
         layout.add_widget(self.output_box_sort)
 
-        label4 = Label(text="Iterations", pos_hint={"center_x": 0.2, "top": 0.65})
-        layout.add_widget(label4)
+        label5 = Label(text="Iterations", pos_hint={"center_x": 0.2, "top": 0.65})
+        layout.add_widget(label5)
 
         self.iteration_box_sort = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.18})
         layout.add_widget(self.iteration_box_sort)
@@ -104,31 +110,37 @@ class MainApp(App):
         self.input_box_search = TextInput(size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.6, "top": 0.79})
         layout.add_widget(self.input_box_search)
 
-        self.spinner_input_search = Spinner(text="Select Input Type", values=("List", "Dict", "Tuple", "String"), background_color=(0.2, 0.6, 0.86, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.06, "top": 0.61})
-        layout.add_widget(self.spinner_input_search)
-
-        self.spinner_order_search = Spinner(text="Select Order", values=("Ascending", "Descending"), background_color=(1.0, 0.5, 0.0, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.4, "top": 0.61})
-        layout.add_widget(self.spinner_order_search)
-
-        self.spinner_algo_search = Spinner(text="Select Algorithm", values=("Linear", "Binary"), background_color=(0.0, 0.7, 0.3, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.7, "top": 0.61})
-        layout.add_widget(self.spinner_algo_search)
-
-        btn_layout = BoxLayout(orientation="horizontal", size_hint=(0.25, None), height=40, pos_hint={"center_x": 0.5, "top": 0.46})
-        self.search_btn = Button(text="SORT", background_color=(0, 0.5, 0.5, 1), color=(1, 1, 1, 1))
-        btn_layout.add_widget(self.search_btn)
-        layout.add_widget(btn_layout)
-
-        label3 = Label(text="Sorted Output", pos_hint={"center_x": 0.2, "top": 0.78})
+        label3 = Label(text="Enter Target Number", pos_hint={"center_x": 0.2, "top": 1.04})
         layout.add_widget(label3)
 
-        self.output_box_display = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.30})
-        layout.add_widget(self.output_box_display)
+        self.input_box_sort = TextInput(size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.66, "top": 0.56})
+        layout.add_widget(self.input_box_sort)
 
-        label4 = Label(text="Iterations", pos_hint={"center_x": 0.2, "top": 0.65})
+        self.spinner_input_sort = Spinner(text="Select Input Type", values=("List", "Dict", "Tuple", "String"), background_color=(0.2, 0.6, 0.86, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.06, "top": 0.68})
+        layout.add_widget(self.spinner_input_sort)
+
+        self.spinner_order_sort = Spinner(text="Select Order", values=("Ascending", "Descending"), background_color=(1.0, 0.5, 0.0, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.4, "top": 0.68})
+        layout.add_widget(self.spinner_order_sort)
+
+        self.spinner_algo_sort = Spinner(text="Select Algorithm", values=("Linear", "Binary"), background_color=(0.0, 0.7, 0.3, 1), size_hint=(0.25, None), height=40, pos_hint={"x": 0.7, "top": 0.68})
+        layout.add_widget(self.spinner_algo_sort)
+
+        btn_layout = BoxLayout(orientation="horizontal", size_hint=(0.25, None), height=40, pos_hint={"center_x": 0.5, "top": 0.46})
+        self.sort_btn = Button(text="SEARCH", background_color=(0, 0.5, 0.5, 1), color=(1, 1, 1, 1))
+        btn_layout.add_widget(self.sort_btn)
+        layout.add_widget(btn_layout)
+
+        label4 = Label(text="Sorted Output", pos_hint={"center_x": 0.2, "top": 0.78})
         layout.add_widget(label4)
 
-        self.iteration_box_display = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.18})
-        layout.add_widget(self.iteration_box_display)
+        self.output_box_sort = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.30})
+        layout.add_widget(self.output_box_sort)
+
+        label5 = Label(text="Iterations", pos_hint={"center_x": 0.2, "top": 0.65})
+        layout.add_widget(label5)
+
+        self.iteration_box_sort = TextInput(text="", readonly=True, size_hint=(0.6, None), height=40, pos_hint={"center_x": 0.62, "top": 0.18})
+        layout.add_widget(self.iteration_box_sort)
 
         return screen
 
@@ -137,5 +149,6 @@ class MainApp(App):
 
     def go_to_searching(self, instance):
         self.sm.current = "searching"
+
 
 MainApp().run()
