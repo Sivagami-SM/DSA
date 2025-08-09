@@ -92,7 +92,7 @@ class MainApp(App):
         return screen
     
     def perform_search(self, instance):
-    # Get user inputs
+    #Get user input
         self.raw_input = self.input_box_search.text.strip()
         self.target = self.input_box_sort.text.strip()
         self.input_type = self.spinner_input_sort.text
@@ -113,12 +113,12 @@ class MainApp(App):
                 return invalid_input()
             if expected_type == "String" and (self.raw_input.startswith("[") or self.raw_input.startswith("(") or self.raw_input.startswith("{")):
                 return invalid_input()
-            return True  # Means input is valid
+            return True  
         
         
         
         def to_list():
-            #Example:10 20 30
+            #Example:[10,20,30]
             if not (self.raw_input.startswith("[") and self.raw_input.endswith("]")):
                 return invalid_input()
             cleaned = self.raw_input.strip("[]")
@@ -147,6 +147,7 @@ class MainApp(App):
             return temp_dict
 
         def to_string():
+            #Example:apple banana
              if self.raw_input.startswith("(") or self.raw_input.startswith("{") or self.raw_input.startswith("["):
                  return invalid_input()
              return self.raw_input.split()
@@ -172,7 +173,7 @@ class MainApp(App):
             values = list(data)
 
 
-    # Perform Linear Search only
+    #Perform Linear Search
         iterations = 0
         found_index = -1
         if self.algo == "Linear":
@@ -182,7 +183,7 @@ class MainApp(App):
                     found_index = i
                     break
 
-    # Show results
+    #Show results
         if found_index != -1:
             self.output_box_sort.text =f"Index: {found_index}"
         else:
@@ -193,6 +194,5 @@ class MainApp(App):
 
     def go_to_searching(self, instance):
         self.sm.current = "searching"
-
-
+        
 MainApp().run()
