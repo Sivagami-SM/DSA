@@ -20,7 +20,7 @@ class InsertionSort:
 
                 try:
                     key_val_num = float(key_val)
-                except:
+                except(ValueError,TypeError):
                     key_val_num = str(key_val)
 
                 j = i - 1
@@ -28,7 +28,7 @@ class InsertionSort:
                 while j >= 0:
                     try:
                         compare_val = float(items[j][1])
-                    except:
+                    except(ValueError,TypeError):
                         compare_val = str(items[j][1])
 
                     if (sort_order == "Ascending" and compare_val > key_val_num) or \
@@ -55,7 +55,7 @@ class InsertionSort:
                 while j >= 0:
                     try:
                         compare_val = float(items[j])
-                    except:
+                    except(ValueError,TypeError):
                         compare_val = str(items[j])
 
                     if (sort_order == "Ascending" and compare_val > key_num) or \
