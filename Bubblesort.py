@@ -67,6 +67,5 @@ class BubbleSort:
             return (tuple(items) if isinstance(self.data, tuple) else items), iterations
 
         
-
         else:
             raise TypeError("Unsupported data type for sorting")
