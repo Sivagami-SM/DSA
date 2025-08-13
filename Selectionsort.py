@@ -21,7 +21,7 @@ class SelectionSort:
                     try:
                         val1 = float(items[j][1])
                         val2 = float(items[selected_index][1])
-                    except:
+                    except(ValueError,TypeError):
                         val1 = str(items[j][1])
                         val2 = str(items[selected_index][1])
 
@@ -45,7 +45,7 @@ class SelectionSort:
                     try:
                         val1 = float(items[j])
                         val2 = float(items[selected_index])
-                    except:
+                    except(ValueError,TypeError):
                         val1 = str(items[j])
                         val2 = str(items[selected_index])
 
