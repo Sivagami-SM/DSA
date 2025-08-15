@@ -11,8 +11,9 @@ from kivy.app import App
 
 class SearchingScreen:
 
-    def __init__(self,screen_manager):
+    def __init__(self,screen_manager,convert_input_fn):
         self.sm = screen_manager
+        self.convert_input = convert_input_fn
         self.layout = FloatLayout()
 
          #colors
@@ -166,32 +167,10 @@ class SearchingScreen:
         input_type = self.input_type.text
 
         try:
-            match input_type:
-                case "List":
-                    data = [i.strip() for i in raw_input.split(",")]
-
-                case "Tuple":
-                    data = tuple(p.strip() for p in raw_input.split(","))
-
-                case "Dictionary":
-                    data = {}
-                    for item in raw_input.split(","):
-                        kv = item.split(":")
-                        key = kv[0].strip()
-                        value_str = kv[1].strip()
-                        try:
-                            if '.' in value_str:
-                                value = float(value_str)
-                            else:
-                                value = int(value_str)
-                        except ValueError:
-                            value = value_str
-                        data[key] = value
-
-                case _:
-                    self.output_box.text = "Invalid Input"
-                    return
-
+            data = self.convert_input(raw_input, input_type)
+            if data is None:
+                self.output_box.text = "Invalid Input Type Selected"
+                return
            
             if self.algorithm.text == "Linear Search":
                 searcher = LinearSearch(data)
@@ -220,4 +199,3 @@ class SearchingScreen:
 
     def get_layout(self):
         return self.layout
-
