@@ -55,6 +55,43 @@ class MainApp(App):
         
         return layout
     
+    def convert_input(self, raw_input, input_type):
+            is_dict_format = ":" in raw_input
+            is_list_tuple_format = "," in raw_input and not is_dict_format        
+
+            match input_type:
+                case "List":
+                     if is_dict_format:
+                         return None
+                     return [i.strip() for i in raw_input.split(",")]
+
+                case "Tuple":
+                     if is_dict_format:
+                         return None
+                     return tuple(p.strip() for p in raw_input.split(","))
+
+                case "Dictionary":
+                    if not is_dict_format:
+                        return None
+                    sep = raw_input.split(",")
+                    data = {}
+                    for item in sep:
+                        kv = item.split(":")
+                        key = kv[0].strip()
+                        value_str = kv[1].strip()
+                        try:
+                            if '.' in value_str:
+                                value = float(value_str)
+                            else:
+                                value = int(value_str)
+                        except ValueError:
+                            value = value_str
+                        data[key] = value
+                    return data
+
+                case _:
+                    return None
+
     def go_to_sorting(self, instance):
         self.sm.current = "sorting"
 
@@ -70,12 +107,12 @@ class MainApp(App):
         self.sm.add_widget(home_screen)
         
         sorting_screen = Screen(name="sorting")
-        self.sorting_page = SortingScreen(self.sm) 
+        self.sorting_page = SortingScreen(self.sm,self.convert_input) 
         sorting_screen.add_widget(self.sorting_page.layout)
         self.sm.add_widget(sorting_screen)
 
         searching_screen = Screen(name="searching")
-        self.searching_page = SearchingScreen(self.sm) 
+        self.searching_page = SearchingScreen(self.sm,self.convert_input) 
         searching_screen.add_widget(self.searching_page.layout)
         self.sm.add_widget(searching_screen)
         
