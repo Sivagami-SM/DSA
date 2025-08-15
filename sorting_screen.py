@@ -106,7 +106,7 @@ class SortingScreen:
             color=(1, 1, 1, 1),
             bold=True
         )
-        sort_button.bind(on_press=self.input_convertion)
+        sort_button.bind(on_press=self.input_conversion)
         self.layout.add_widget(sort_button)
 
         #Iterations Label
@@ -151,7 +151,7 @@ class SortingScreen:
         )
         self.layout.add_widget(self.output_box)
 
-    def input_convertion(self, instance):
+    def input_conversion(self, instance):
         raw_input = self.data_input.text.strip()
         input_type = self.input_type.text
         order = self.sorting_order.text
@@ -222,3 +222,4 @@ class SortingScreen:
 
     def get_layout(self):
         return self.layout
+
