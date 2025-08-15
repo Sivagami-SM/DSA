@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from Linearsearch import LinearSearch
 from Binarysearch import BinarySearch
+from kivy.app import App
 
 
 class SearchingScreen:
@@ -44,7 +45,7 @@ class SearchingScreen:
         back_button = Button(
             text="Back",
             size_hint=(0.15, 0.08),
-            pos_hint={"x": 0.85, "top": 0.98},
+            pos_hint={"left": 0.85, "top": 0.98},
             background_color=(1, 0.757, 0.027, 1),
             bold=True
         )
@@ -158,6 +159,7 @@ class SearchingScreen:
         )
         self.layout.add_widget(self.output_box)
 
+        
     def input_convertion(self, instance):
         raw_input = self.data_input.text.strip()
         target = self.target_input.text.strip()
@@ -212,8 +214,9 @@ class SearchingScreen:
             self.iter_result.text = ""
 
     def go_to_home(self,instance):
-        self.sm.current = "home"
-
+        print("Back button pressed!")
+        App.get_running_app().root.current = "home"
+        
 
     def get_layout(self):
         return self.layout
