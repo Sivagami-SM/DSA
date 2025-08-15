@@ -7,21 +7,28 @@ class BinarySearch:
 
         if isinstance(self.data, dict):
             items = list(self.data.items())
-            for i in range(len(items)):
-                for j in range(i + 1, len(items)):
-                    try:
-                        v1 = float(items[i][1])
-                        v2 = float(items[j][1])
-                    except(ValueError,TypeError):
-                        v1 = str(items[i][1])
-                        v2 = str(items[j][1])
-                    if v1 > v2:
-                        items[i], items[j] = items[j], items[i]
-
-            values = []
+            pairs = []
+            index = 0
             for item in items:
-                    values.append(item[1])
+                pairs.append((item[1], index))
+                index += 1
 
+            # Sort pairs by value
+            for i in range(len(pairs)):
+                for j in range(i + 1, len(pairs)):
+                    try:
+                        v1 = float(pairs[i][0])
+                        v2 = float(pairs[j][0])
+                    except (ValueError, TypeError):
+                        v1 = str(pairs[i][0])
+                        v2 = str(pairs[j][0])
+                    if v1 > v2:
+                        pairs[i], pairs[j] = pairs[j], pairs[i]
+
+             # Extract sorted values for binary search
+            values = []
+            for p in pairs:
+                values.append(p[0])
 
            #Binary search algorithm
             left, right = 0, len(values) - 1
@@ -36,7 +43,7 @@ class BinarySearch:
                     tgt_val = str(target)
 
                 if mid_val == tgt_val:
-                    return f"Found at index: {[mid][0]}", iterations
+                    return f"Found at index: {mid}", iterations
                 elif mid_val < tgt_val:
                     left = mid + 1
                 else:
