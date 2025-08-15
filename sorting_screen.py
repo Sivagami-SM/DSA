@@ -4,6 +4,10 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.app import App
+from Bubblesort import BubbleSort
+from Insertionsort import InsertionSort
+from Selectionsort import SelectionSort
 
 
 class SortingScreen:
@@ -42,7 +46,7 @@ class SortingScreen:
         back_button = Button(
             text="Back",
             size_hint=(0.15, 0.08),
-            pos_hint={"x": 0.85, "top": 0.98},
+            pos_hint={"left": 0.85, "top": 0.98},
             background_color=(1, 0.757, 0.027, 1),
             bold=True
         )
@@ -94,7 +98,7 @@ class SortingScreen:
         self.layout.add_widget(self.algorithm)
 
         #Sorting button
-        self.sort_button = Button(
+        sort_button = Button(
             text="Sort",
             size_hint=(0.9, 0.08),
             pos_hint={"x": 0.05, "top": 0.58},
@@ -102,7 +106,8 @@ class SortingScreen:
             color=(1, 1, 1, 1),
             bold=True
         )
-        self.layout.add_widget(self.sort_button)
+        sort_button.bind(on_press=self.input_convertion)
+        self.layout.add_widget(sort_button)
 
         #Iterations Label
         self.layout.add_widget(Label(
@@ -146,10 +151,74 @@ class SortingScreen:
         )
         self.layout.add_widget(self.output_box)
 
-    def go_to_home(self,instance):
-        print('Sorting back pressed -> home') 
-        self.sm.current = "home"
+    def input_convertion(self, instance):
+        raw_input = self.data_input.text.strip()
+        input_type = self.input_type.text
+        order = self.sorting_order.text
+        
+        try:
+            match input_type:
+                case "List":
+                    data = [i.strip() for i in raw_input.split(",")]
 
+                case "Tuple":
+                    data = tuple(p.strip() for p in raw_input.split(","))
+
+                case "Dictionary":
+                    sep = raw_input.split(",")
+                    data = {}
+                    for item in sep:
+                        kv = item.split(":")
+                        key = kv[0].strip()
+                        value_str = kv[1].strip()
+                        try:
+                            if '.' in value_str:
+                                value = float(value_str)
+                            else:
+                                value = int(value_str)
+                        except ValueError:
+                            value = value_str
+                        data[key] = value
+
+                case _:
+                    self.output_box.text = "Invalid Input Type Selected"
+                    return
+
+            
+            if self.algorithm.text == "Bubble Sort":
+                sorter = BubbleSort(data)
+                sorted_data, iterations = sorter.Bubble(order)
+
+                self.output_box.text = str(sorted_data)
+                self.iter_result.text = str(iterations)
+            
+            elif self.algorithm.text == "Insertion Sort":
+                sorter = InsertionSort(data)
+                sorted_data, iterations = sorter.Insertion(order)
+
+                self.output_box.text = str(sorted_data)
+                self.iter_result.text = str(iterations)
+            
+            elif self.algorithm.text == "Selection Sort":
+                sorter = SelectionSort(data)
+                sorted_data, iterations = sorter.Selection(order)
+
+                self.output_box.text = str(sorted_data)
+                self.iter_result.text = str(iterations)
+
+            else:
+                self.output_box.text = "Selected algorithm not implemented yet."
+                self.iter_result.text = ""
+
+        except Exception:
+            self.output_box.text = "Invalid Input"
+            self.iter_result.text = ""
+
+
+    def go_to_home(self,instance):
+        print("Back button pressed!")
+        App.get_running_app().root.current = "home"
+    
 
     def get_layout(self):
         return self.layout
