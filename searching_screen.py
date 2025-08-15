@@ -114,7 +114,7 @@ class SearchingScreen:
             color=(1, 1, 1, 1),
             bold=True
         )
-        search_button.bind(on_press=self.input_convertion)
+        search_button.bind(on_press=self.input_conversion)
         self.layout.add_widget(search_button)
 
         #Iterations Label
@@ -160,7 +160,7 @@ class SearchingScreen:
         self.layout.add_widget(self.output_box)
 
         
-    def input_convertion(self, instance):
+    def input_conversion(self, instance):
         raw_input = self.data_input.text.strip()
         target = self.target_input.text.strip()
         input_type = self.input_type.text
@@ -220,3 +220,4 @@ class SearchingScreen:
 
     def get_layout(self):
         return self.layout
+
